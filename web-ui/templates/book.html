@@ -1,0 +1,31 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Autor:</strong> {{ book.author }} — {{ book.year }}</p>
+    <p>{{ book.synopsis }}</p>
+</div>
+
+<h3>Avaliações</h3>
+{% for r in reviews %}
+<div class="card">
+    <strong>{{ r.reviewer }}</strong>
+    ⭐ {{ r.rating }}
+    <p>{{ r.comment }}</p>
+</div>
+{% else %}
+<p>Ainda sem avaliações.</p>
+{% endfor %}
+
+<h3>Deixar Avaliação</h3>
+<div class="card">
+    /book/{{ book.id }}/review
+    <input name="reviewer" placeholder="Teu nome" required>
+    <input name="rating" type="number" min="1" max="5" required>
+    <textarea name="comment" placeholder="Comentário..." required></textarea>
+    <button class="btn">Publicar</button>
+    </form>
+</div>
+
+{% endblock %}
